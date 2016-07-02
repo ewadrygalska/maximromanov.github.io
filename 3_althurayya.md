@@ -23,7 +23,7 @@ onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');ret
 </section>
 </section>
 
-_al-Ṯurayyā_ is a Gazetter of the Classical Islamic World, and a part and parcel of another project in progress—_Ṣūraŧ al-arḍ_, a geospatial model of the Classical Islamic World (being developed in collaboration with Cameron Jackson, a Senior, double majoring in Arabic and Computer Science @ Tufts University, 2013).
+_al-Ṯurayyā_ (_al-Thurayyā_) is a Gazetter of the Classical Islamic World, and a part and parcel of another project in progress—_Ṣūraŧ al-arḍ_, a geospatial model of the Classical Islamic World (being developed in collaboration with Cameron Jackson, a Senior, double majoring in Arabic and Computer Science @ Tufts University, 2013).
 
 <figure class="fit">
 	<a href="{{ site.url }}/projects/althurayya_02/" title="A Screenshot of al-Thurayyā">
@@ -31,7 +31,7 @@ _al-Ṯurayyā_ is a Gazetter of the Classical Islamic World, and a part and par
 	</a>
 </figure>
 
-This is our first usable demo of **al-Ṯhurayyā Gazetteer**. Currently it includes over 2,000 toponyms and almost as many route sections georeferenced from Georgette Cornu’s *Atlas du monde arabo-islamique à l'époque classique: IXe-Xe siècles* (Leiden: Brill, 1983). The gazetteer is searchable (upper left corner), although English equivalents are not yet included; in other words, look for Dimashq/دمشق, not Damascus.
+This is our first usable demo of **al-Ṯurayyā Gazetteer**. Currently it includes over 2,000 toponyms and almost as many route sections georeferenced from Georgette Cornu’s *Atlas du monde arabo-islamique à l'époque classique: IXe-Xe siècles* (Leiden: Brill, 1983). The gazetteer is searchable (upper left corner), although English equivalents are not yet included; in other words, look for Dimashq/دمشق, not Damascus.
 
 
 ## Blog posts on major milestones of the project: 
