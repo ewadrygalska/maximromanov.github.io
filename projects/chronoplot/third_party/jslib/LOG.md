@@ -1,3 +1,0 @@
-# 2013-12-20
-Learn something...
-http://lodev.org/cgtutor/color.html

@@ -1,0 +1,2663 @@
+var sizeDot = 3
+
+var radiusLookup = {
+    "global": 20,
+    "regional": 10,
+    "local": 3,
+};
+
+
+var conditionLookup = {
+    "muslim": "#009933",
+    "christian": "#CCA300",
+    "jewish": "#6699FF",
+    "interfaith": "grey",
+    "zoroastrian": "#FF0000"
+};
+
+var places = { data:[
+{
+        "name": "Abbadan",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 48.27639,
+        "lat": 30.33599,
+        "comment": "It is 'the clay of the clay of Jersualem which teh flood took to there in the time of Noah, and which will return to its original place on the Day of the Resurrection,' according to the Prophet. "
+    },
+    {
+        "name": "al-Basra",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 47.71794,
+        "lat": 30.40472,
+        "comment": "The site of three important mosques, include Bab al-Badiya (the gate of the desert). "
+    },
+    {
+        "name": "al-Basra",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 47.71794,
+        "lat": 30.40472,
+        "comment": "Graves of Talha, Zubayr, the prophet's brother, al-Hasan al-Basri, Anas bin Malik, 'Imran bin Husay, Sufyan al-Thawri, Malik bin Dinar, 'Utba the Slave, Muhammad bin Wasi', Salih al-Murri, Ayyub al-Sikhtiyani, Sahl al-Tustari, Rabi'a al-Adawiyya, and Ibn Salim. "
+    },
+    {
+        "name": "al-Karkh",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 43.87338,
+        "lat": 34.2979,
+        "comment": "Birthplace of Abu al-Hasan al-Karkhi, a jurist"
+    },
+    {
+        "name": "al-Kufa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 44.38095,
+        "lat": 32.0469,
+        "comment": "The mosque is built on tall jointed pillars of stone; it is handsome and perfectly constructed"
+    },
+    {
+        "name": "al-Kufa",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 44.38095,
+        "lat": 32.0469,
+        "comment": "Where noah built his ark and the fountains on the surface of the earth bubbled over "
+    },
+    {
+        "name": "al-Kufa",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 44.38095,
+        "lat": 32.0469,
+        "comment": "Grave of 'Ali and al-Husayn "
+    },
+    {
+        "name": "al-Kufa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 44.38095,
+        "lat": 32.0469,
+        "comment": "Monument of 'Ali "
+    },
+    {
+        "name": "al-Mada'in",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 44.59468,
+        "lat": 33.09255,
+        "comment": "Grave of Salman "
+    },
+    {
+        "name": "al-Nahrawan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.59556,
+        "lat": 33.43222,
+        "comment": "Mosque where pilgrims halt to rest on their way"
+    },
+    {
+        "name": "al-Nu'maniyya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 45.42572,
+        "lat": 32.59735,
+        "comment": "Mosque standing in marketplace"
+    },
+    {
+        "name": "al-Qadisiyya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.16721,
+        "lat": 31.7787,
+        "comment": "Mosque standing in marketplace"
+    },
+    {
+        "name": "al-Sinn",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 43.49636,
+        "lat": 35.27911,
+        "comment": "Mosque stands among the markets"
+    },
+    {
+        "name": "Baghdad",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 44.35661,
+        "lat": 33.35759,
+        "comment": "The Mosque located in the City of Peace is extremely well known."
+    },
+    {
+        "name": "Baghdad",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 44.35661,
+        "lat": 33.35759,
+        "comment": "Grave of Abu Hanifa"
+    },
+    {
+        "name": "Baghdad (City of Peace) ",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 44.35661,
+        "lat": 33.35759,
+        "comment": "It is said that that Messenger of god said: 'A city will be built between the Tigris, Dujayl, Qutrabbul and al-Sarat, to which will be gathered the treasures of the earth in tribute. And the people in their arrogance will be brought low, and their descent into the earth will be faster than the sinking of an iron spike in soft ground. "
+    },
+    {
+        "name": "Hulwan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 45.85673,
+        "lat": 34.47903,
+        "comment": "Quhandiz with a mosque that stands within it."
+    },
+    {
+        "name": "Hulwan",
+        "topType": "regional",
+        "condition": "jewish",
+        "lon": 45.85673,
+        "lat": 34.47903,
+        "comment": "Temple located outside the town, built of gypsum and stone"
+    },
+    {
+        "name": "Jabbul",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 45.72486,
+        "lat": 32.55559,
+        "comment": "Graceful mosque that stands beside the marketplace"
+    },
+    {
+        "name": "Jarjaraya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 45.31952,
+        "lat": 32.74114,
+        "comment": "Mosque, in splendid condition, close to river bank"
+    },
+    {
+        "name": "Kuta Rabba",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 44.6261,
+        "lat": 32.75677,
+        "comment": "Birthplace of Abraham "
+    },
+    {
+        "name": "Kuta Rabba",
+        "topType": "local",
+        "condition": "interfaith",
+        "lon": 44.6261,
+        "lat": 32.75677,
+        "comment": "Mounds said to be ashes of the fire of Nimrud"
+    },
+    {
+        "name": "Qasr Ibn Hubayra",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.34776,
+        "lat": 32.70391,
+        "comment": "Mosque stands in the marketplace"
+    },
+    {
+        "name": "Samarra",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 43.88135,
+        "lat": 34.21158,
+        "comment": "Considered (by al-Muqaddasi) to be superior to that of to that of Damascus. "
+    },
+    {
+        "name": "Takrit",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 43.69726,
+        "lat": 34.59276,
+        "comment": "A convent to which Christians make pilgrimage "
+    },
+    {
+        "name": "Wasit",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 46.32048,
+        "lat": 32.19906,
+        "comment": "Masjid al-Hajjaj, located toward the edge of the market, is often crowded with reciters of the Quran."
+    }, 
+{
+        "name": "Makka",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 39.85793,
+        "lat": 21.36834,
+        "comment": "Mecca is the metropolis of the Peninsula of the Arabs, and its mosque, al-Masjid al-Haram, has a length of 370 cubits and a width of 350 cubits. Places of note include Al-Hajar al-Aswad (The Black Stone) and the Maqam (the standing stone of Abraham). "
+    },
+    {
+        "name": "Makka",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 39.85793,
+        "lat": 21.36834,
+        "comment": "The Maqam, or the standing stone of Abraham, is included in the course of the tawaf during the days of the Pilgrimage. Every year, the stone is touched as the Imam ends the prayers. "
+    },
+    {
+        "name": "Yathrib",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 39.64999,
+        "lat": 24.3857,
+        "comment": "Known as the City of the Prophet, Yathrib, or al-Madina, is less than half the size of Mecca. The mosque here was built by Walid, son of 'Abd al-Malik, and according to al-Muqaddasi the Prophet himself said: 'Even if this mosque were extended as far as Sanaa, it would still be my mosque.' "
+    },
+    {
+        "name": "Yanbu'",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 38.23124,
+        "lat": 24.0479,
+        "comment": "Mosque near the gates of the fortress. "
+    },
+    {
+        "name": "Al-Baqi (cemetery in al-Madinah) ",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.64999,
+        "lat": 24.3857,
+        "comment": "The grave of Ibrahim, son of the Prophet, and the graves of al-hasan, a number of Companions, and the grave of 'Uthman. "
+    },
+    {
+        "name": "Quba (present day est.) ",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.6172,
+        "lat": 24.4392,
+        "comment": "Location of both Masjid al-Taqwa and Masjid al-Dhirar, both mentioned in the Quran as the Mosque of Veneration and the Mosque of Mischief, respectively. "
+    },
+    {
+        "name": "Uhud (present day est.) ",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.606389,
+        "lat": 24.509444,
+        "comment": "Hill closest to al-Madina containing the grave of Hamza and the graves of the Martyrs. "
+    },
+    {
+        "name": "Qurh",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 38.01189,
+        "lat": 26.47477,
+        "comment": "The mihrab of the mosque here is a bone that supposedly spoke to the Prophet, saying: 'Do not eat me, for I am poisoned.' "
+    },
+    {
+        "name": "Khaybar",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.31951,
+        "lat": 25.69863,
+        "comment": "Near the gate where the Prince of the Faithful snatched up 'Ali, dropping his shield in the attack"
+    },
+    {
+        "name": "al-'Arj (est.) ",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 38.1243,
+        "lat": 25.23776,
+        "comment": "hill through which Gabriel split open a way to al-Madina for the Prophet (location between al-Marwa and al-Harwa) "
+    },
+    {
+        "name": "Judda",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.21773,
+        "lat": 21.45906,
+        "comment": "Judda, a seashore city, is the granary of Makka. It has a distinguished mosque. "
+    },
+    {
+        "name": "al-Ahqaf ",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 48.75143,
+        "lat": 15.4078,
+        "comment": "Grave of Hud (estimated from grave of Hud)"
+    },
+    {
+        "name": "al-Jar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 38.56846,
+        "lat": 23.75433,
+        "comment": "Mosque without a courtyard"
+    },
+    {
+        "name": "al-Hijr",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 41.74814,
+        "lat": 25.95834,
+        "comment": "Mosque located outside of town. "
+    },
+    {
+        "name": "al-Sayra (?)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 39.08261,
+        "lat": 24.95285,
+        "comment": "A town in which there is a mosque"
+    },
+    {
+        "name": "Zabid",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 43.23337,
+        "lat": 14.21069,
+        "comment": "Clean mosque with cemented floors and a hollow pulpit for a continuous row of worshippers"
+    },
+    {
+        "name": "Adan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 45.00527,
+        "lat": 12.78199,
+        "comment": "The Prophet gave his blessing to the market here."
+    },
+    {
+        "name": "al-Sharja",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.75519,
+        "lat": 16.46296,
+        "comment": "Mosque on the seashore"
+    },
+    {
+        "name": "Ghalafiqa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 43.01908,
+        "lat": 14.49886,
+        "comment": "Here is a mosque with special respect, where the people attend assiduously to pray "
+    },
+    {
+        "name": "Mukha/Muha",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 43.22241,
+        "lat": 13.31523,
+        "comment": "Mosque of the Abandon Well and the Lofty Palace"
+    },
+    {
+        "name": "al-Hirda (est.) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 43.20356,
+        "lat": 13.86867,
+        "comment": "Mosque on the seashore"
+    },
+    {
+        "name": "Athr/Ahwar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 46.62519,
+        "lat": 13.5805,
+        "comment": "A mosque standing next to the residence of the ruler. "
+    },
+    {
+        "name": "Sanaa ",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 44.16341,
+        "lat": 15.45133,
+        "comment": "The fire which burned the garden of the oath-mongers"
+    },
+    {
+        "name": "Suhar",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 56.71892,
+        "lat": 24.30248,
+        "comment": "Masjid Suhar: 'There it was knelt the camel of the Messenger of God.' "
+    },
+    {
+        "name": "Nazwa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.54192,
+        "lat": 22.80916,
+        "comment": "Mosque in center of marketplace"
+    },
+    {
+        "name": "al-Sirr",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.86106,
+        "lat": 23.03377,
+        "comment": "Mosque in the market"
+    },
+    {
+        "name": "Hafit",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 55.88715,
+        "lat": 23.86905,
+        "comment": "Mosque in the market"
+    },
+    {
+        "name": "al-Ahsa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.53833,
+        "lat": 25.32201,
+        "comment": "Mosque is in disuse. "
+    },
+    {
+        "name": "Dhu al-Hulayfa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.60283,
+        "lat": 24.30863,
+        "comment": "Mosque is in the town"
+    },
+    {
+        "name": "Amaj (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 39.34429,
+        "lat": 22.07736,
+        "comment": "Mosque is right on the side of the road."
+    },
+    {
+        "name": "Al-Fur (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 39.35237,
+        "lat": 23.04958,
+        "comment": "Fort with a mosque"
+    },
+    {
+        "name": "Arafa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 40.22225,
+        "lat": 21.29366,
+        "comment": "Village with substantial houses belonging to the people of Makka which they occupy on the Day of 'Arafa"
+    },
+    {
+        "name": "Al-Tanim",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 39.8102,
+        "lat": 21.50911,
+        "comment": "Place in which a number of mosques stand around Masjid A'isha; where the Makkans go in their ihram during the ceremonies of the 'Umra. "
+    },
+    {
+        "name": "Al-Dhabib",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.15712,
+        "lat": 22.7116,
+        "comment": "Miqat (rendezvous) for pilgrims coming from the West."
+    },
+    {
+        "name": "Al-Muzdalifa (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 40.14146,
+        "lat": 21.65185,
+        "comment": "Also called Jam' and al-Mash'ar al-Haram, and has a oratory, public fountain, and minaret. "
+    },
+    {
+        "name": "Aqaba (est.)",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.7321,
+        "lat": 21.40408,
+        "comment": "Pass on which the pebbles are cast on Yawn al-Nahr. Also close to Masjid al-Khayf and Masjid al-Kabsh."
+    },
+    {
+        "name": "al-Haditha",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.38721,
+        "lat": 34.10618,
+        "comment": "Mosque close to the riverbank and shaped like a taylasan."
+    },
+    {
+        "name": "al-Hasaniyya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.95071,
+        "lat": 37.02848,
+        "comment": "Mosque in the middle of town with a river flowing beside it. "
+    },
+    {
+        "name": "Al-Jibal",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 41.62311,
+        "lat": 36.23972,
+        "comment": "Mosque stands at the edge of town "
+    },
+    {
+        "name": "al-Mawsil",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 43.12573,
+        "lat": 36.32392,
+        "comment": "Mosque that is built on higher ground and approached by steps; the front of the roofed part of the mosque is without any doors. "
+    },
+    {
+        "name": "al-Mawsil",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 43.12573,
+        "lat": 36.32392,
+        "comment": "Dayr al-Kalab, or the Monastery of Hydrophobia. If a person remains with the monks of this monastery for fifty days, he is made to recover by the grace of God, the most High. "
+    },
+    {
+        "name": "al-Raqqa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 39.04911,
+        "lat": 35.9457,
+        "comment": "Remarkable mosque "
+    },
+    {
+        "name": "Al-Ruha",
+        "topType": "global",
+        "condition": "christian",
+        "lon": 38.82001,
+        "lat": 37.15009,
+        "comment": "A remarkable church with vaulted galleries decorated with mosaic, one of the wonders of the world, according to al-Muqaddasi. "
+    },
+    {
+        "name": "Balad",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 42.7585,
+        "lat": 36.47036,
+        "comment": "Spring out of which Jonas emerged; healing of leprosy is sought in its water. "
+    },
+    {
+        "name": "Balad",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.7585,
+        "lat": 36.47036,
+        "comment": "Mosque in center of the town"
+    },
+    {
+        "name": "Harran",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 39.08954,
+        "lat": 36.88647,
+        "comment": "Mosque at the edge of town"
+    },
+    {
+        "name": "Hisn Kayfa",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 41.42096,
+        "lat": 37.69592,
+        "comment": "Known for its many churches. "
+    },
+    {
+        "name": "Ma'lathaya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.96065,
+        "lat": 36.81098,
+        "comment": "Mosque located on a hill. "
+    },
+    {
+        "name": "Mayyafariqin",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 41.00656,
+        "lat": 38.14508,
+        "comment": "Monastery where a body, supposedly one of the apostles of Jesus Christ, stands desiccated and standing erect. "
+    },
+    {
+        "name": "Nasibin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 41.21882,
+        "lat": 37.05605,
+        "comment": "Mosque in the middle of the town"
+    },
+    {
+        "name": "Ra's al-'Ayn",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 40.05984,
+        "lat": 36.83795,
+        "comment": "Mosque in center of town"
+    },
+    {
+        "name": "Sinjar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 41.89264,
+        "lat": 36.3212,
+        "comment": "Mosque located in shoemaker's quarter"
+    },
+    {
+        "name": "Thamanin",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 42.64038,
+        "lat": 37.31481,
+        "comment": "The place Noah built when he came out of the ark; the first town after the Flood. Its name, Thamanin, or eighty, represented the number of people he had with him. ",
+    },
+    {
+        "name": "Nunawa (opposite al-Mawsa, est.) ",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 43.12573,
+        "lat": 36.32392,
+        "comment": "Tall Tawba, or Hill of Repentance: has a mosque and residences for the devout. Seven visits to it equal a Pilgrimage to Makka. "
+    },
+    {
+        "name": "Ayn Yunus (same place as Nunawa, est.) ",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 43.12573,
+        "lat": 36.32392,
+        "comment": "Spring of Jonas",
+    },
+    {
+        "name": "Amman",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 35.91747,
+        "lat": 31.93207,
+        "comment": "stadium of Solomon",
+    },
+    {
+        "name": "Amman",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 35.91747,
+        "lat": 31.93207,
+        "comment": "tomb of Uriah"
+    },
+    {
+        "name": "Adhruh",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 35.75406,
+        "lat": 30.3396,
+        "comment": "The mantle of the Messenger of God, and a treaty from him written on parchment."
+    },
+    {
+        "name": "Akka",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 35.07575,
+        "lat": 32.92794,
+        "comment": "Very large mosque with a grove of olive trees in its court."
+    },
+    {
+        "name": "Al-Faradhiya (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.10394,
+        "lat": 32.75162,
+        "comment": "Mosque has large pulpit"
+    },
+    {
+        "name": "al-Ramla",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 34.86175,
+        "lat": 31.9268,
+        "comment": "al-Abyadh, or the White Mosque. More magnificent and elegant than the mosque in Damascus. "
+    },
+    {
+        "name": "Al-Raqim",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 35.96371,
+        "lat": 31.89353,
+        "comment": "A cavern is located here--according to the Messenger of God himself, a boulder fell down from the mountain, blocking the mouth of the cave and shutting in a party of three. God then split open the boulder."
+    },
+    {
+        "name": "Ascalon",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 34.55469,
+        "lat": 31.66691,
+        "comment": "Mosque stands in the Market of the Clothesmerchants "
+    },
+    {
+        "name": "Aqir",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 34.80752,
+        "lat": 31.86115,
+        "comment": "Fine mosque "
+    },
+    {
+        "name": "Ariha",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 35.45,
+        "lat": 31.85,
+        "comment": "Gate of which God spoke to the Children of Israel. "
+    },
+    {
+        "name": "Baysan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.48967,
+        "lat": 32.50092,
+        "comment": "Mosque stands in the marketplace"
+    },
+    {
+        "name": "Bayt al-Maqdis",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 35.19908,
+        "lat": 31.7833,
+        "comment": "Masjid al-Aqsa (the Further Mosque). Its foundations were laid by David, made of the hardest material, and crenellated by Abd al-Malik. Its holy places include Mihrab Maryam (Oratory of Mary), Zakariyya, Yaqub, and al-Kidhr, the Station of the Prophet and of Jibraeel, the Place of the Ants, of the lights, and of the Kaba, and the Place of al-Sirat. "
+    },
+    {
+        "name": "Wadi Jahannam",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 35.19908,
+        "lat": 31.7833,
+        "comment": "Church over the suplchre of Mary",
+    },
+    {
+        "name": "Wadi Jahannam",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.19908,
+        "lat": 31.7833,
+        "comment": "Tombs of Shaddad bin Aws al-Khazraji and Ubada bin al-Samit",
+    },
+    {
+        "name": "Bayt Lahm",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 35.18829,
+        "lat": 31.70854,
+        "comment": "Church, incomparable in the country around."
+    },
+    {
+        "name": "Bayt Lahm",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 35.18829,
+        "lat": 31.70854,
+        "comment": "Birthplace of Jesus Christ"
+    },
+    {
+        "name": "Bayt Lahm",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 35.18829,
+        "lat": 31.70854,
+        "comment": "Location of the Palm Tree "
+    },
+    {
+        "name": "Dimashq",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 36.30364,
+        "lat": 33.52454,
+        "comment": "The finest the Muslims have, according to al-Muqaddasi. It is characterized by its dome, fronting the mihrab. People enter via four doors--Bab Jayrun, Bab al-Faradis, Bab al-Barid, and Bab al-Saat. "
+    },
+    {
+        "name": "Ghazza",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 34.45449,
+        "lat": 31.49579,
+        "comment": "Monument of Umar bin al-Khattab, Birthplace of al-Shafii, and Tomb of Hashim bin Abd Manaf."
+    },
+    {
+        "name": "Ghazza",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 34.45449,
+        "lat": 31.49579,
+        "comment": "Beautiful Mosque"
+    },
+    {
+        "name": "Habra",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 35.08654,
+        "lat": 31.53125,
+        "comment": "Birthplace of Abraham al-Khalil"
+    },
+    {
+        "name": "Habra",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 35.08654,
+        "lat": 31.53125,
+        "comment": "The tomb of Isaac and Jacob, and Abraham."
+    },
+    {
+        "name": "Habra",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 35.08654,
+        "lat": 31.53125,
+        "comment": "Cities of Lot, which Abraham saw and said: 'I now bear witness that this is in truth the time of Certainty [of death].' "
+    },
+    {
+        "name": "Halab",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 37.1767,
+        "lat": 36.19993,
+        "comment": "Great mosque stands in the town. "
+    },
+    {
+        "name": "Hims",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 36.709444,
+        "lat": 34.730833,
+        "comment": "Talisman made to protect against scorpions."
+    },
+    {
+        "name": "Hims",
+        "topType": "local",
+        "condition": "interfaith",
+        "lon": 36.709444,
+        "lat": 34.730833,
+        "comment": "Half-church, half-mosque "
+    },
+    {
+        "name": "Kafar Saba (on the road to Damascus, est.) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 36.43435,
+        "lat": 33.71577,
+        "comment": "Large place with a mosque "
+    },
+    {
+        "name": "Ludd",
+        "topType": "global",
+        "condition": "christian",
+        "lon": 34.8846,
+        "lat": 31.95365,
+        "comment": "The church at the door of which Jesus will slay the antichrist "
+    },
+    {
+        "name": "Madyan",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 35.72807,
+        "lat": 30.20055,
+        "comment": "Location of the rock which Moses removed when he gave wtaer to the flocks of Shu'ayb. "
+    },
+    {
+        "name": "Qadas",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.49121,
+        "lat": 33.12526,
+        "comment": "Mosque in the market next to a palm tree "
+    },
+    {
+        "name": "Nabulus",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.2407,
+        "lat": 32.22343,
+        "comment": "Mosque is in the midst of town"
+    },
+    {
+        "name": "Sulwan (outskirts of Jersulem, est.) ",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 35.19908,
+        "lat": 31.7833,
+        "comment": "Job's well"
+    },
+    {
+        "name": "Qinnasirn",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 37.02819,
+        "lat": 35.99418,
+        "comment": "Hadith: 'At whichever of these three places you alight, that will be the abode of your migration--al-Madina, Bahrayn, or Qinnasrin.' "
+    },
+    {
+        "name": "Tabariyya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.50971,
+        "lat": 32.78303,
+        "comment": "Large and fine mosque with a floor laid in pebbles; rests on pillars of joined stone."
+    },
+    {
+        "name": "Tadmur",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 38.28767,
+        "lat": 34.5497,
+        "comment": "One of the cities of Solmon, son of David"
+    },
+    {
+        "name": "Wayla",
+        "topType": "local",
+        "condition": "interfaith",
+        "lon": 34.93982,
+        "lat": 29.54282,
+        "comment": "The place of which God said: 'ask them of the township that was by the sea.' "
+    },
+    {
+        "name": "Yafa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 34.75356,
+        "lat": 32.06156,
+        "comment": "Mosque that overlooks the sea "
+    },
+    {
+        "name": "Yubna",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 34.73352,
+        "lat": 31.86886,
+        "comment": "Beautiful mosque "
+    },
+    {
+        "name": "Jabal Zayta (est. near Jerusalem)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 35.19908,
+        "lat": 31.7833,
+        "comment": "Built in memory of 'Umar"
+    },
+    {
+        "name": "Jabal Zayta (est. near Jerusalem)",
+        "topType": "global",
+        "condition": "interfaith",
+        "lon": 35.19908,
+        "lat": 31.7833,
+        "comment": "al-Sahira, or the place where Jesus ascended. Also will be the scene of the resurrection."
+    },
+    {
+        "name": "Tabuk (est.)",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 34.97467,
+        "lat": 31.99216,
+        "comment": "Mosque of the Prophet. "
+    },
+    {
+        "name": "Al-Damghan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 54.38009,
+        "lat": 36.13421,
+        "comment": "Fine and well-kept mosque located in the alleys."
+    },
+    {
+        "name": "Simnan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 53.40652,
+        "lat": 35.49189,
+        "comment": "Fine mosque situated in the market"
+    },
+    {
+        "name": "Bistam",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 55.07425,
+        "lat": 36.4594,
+        "comment": "Pious associates of the mosque where people visit. "
+    },
+    {
+        "name": "Bistam",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 55.07425,
+        "lat": 36.4594,
+        "comment": "Grave of Abu yazid"
+    },
+    {
+        "name": "Shahrastan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 55.21025,
+        "lat": 37.19867,
+        "comment": "Mosque resembling that which you would find in al-Ramla. "
+    },
+    {
+        "name": "Bakrabadh (?) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.83085,
+        "lat": 36.33081,
+        "comment": "Houses of prayers with elders and nobles "
+    },
+    {
+        "name": "Astarabadh",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 54.46896,
+        "lat": 36.7846,
+        "comment": "Mosque in the market with a stream close to its door "
+    },
+    {
+        "name": "Abaskun",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 54.04883,
+        "lat": 37.02968,
+        "comment": "Mosque in the market "
+    },
+    {
+        "name": "Akhur",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 55.71185,
+        "lat": 39.199,
+        "comment": "Minaret that can be seen from afar admist the villages "
+    },
+    {
+        "name": "Amul",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 52.40871,
+        "lat": 36.42911,
+        "comment": "Two congregational mosques, both near river and trees"
+    },
+    {
+        "name": "Salus",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 51.45534,
+        "lat": 36.60416,
+        "comment": "Mosque beside a fortress of stone "
+    },
+    {
+        "name": "Sariya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 53.11431,
+        "lat": 36.52606,
+        "comment": "Mosque with magnificent orange tree. "
+    },
+    {
+        "name": "Kashm (Hawsam)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.18502,
+        "lat": 37.4902,
+        "comment": "Mosque standing on the edge of the markets "
+    },
+    {
+        "name": "Dulab (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.45838,
+        "lat": 37.00409,
+        "comment": "Mosque at the edge of town"
+    },
+    {
+        "name": "Kuhan Rudh (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.90359,
+        "lat": 36.88559,
+        "comment": "Mosque in the middle of town"
+    },
+    {
+        "name": "Bulghar (est.) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.58765,
+        "lat": 37.31111,
+        "comment": "Mosque stands in the market"
+    },
+    {
+        "name": "Samandar (est.) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.81202,
+        "lat": 37.61005,
+        "comment": "Many mosques here regardless of the dominant Christian population."
+    },
+{
+        "name": "Bardha'a",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 47.23654,
+        "lat": 40.45266,
+        "comment": "mosque built on tall pillars covered with gypsum, made of plaster and baked brick. "
+    },
+    {
+        "name": "Malazkird",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.54239,
+        "lat": 39.36463,
+        "comment": "Number of mosques "
+    },
+    {
+        "name": "al-Shabaran",
+        "topType": "local",
+        "condition": "christian",
+        "lon": 48.76355,
+        "lat": 41.27406,
+        "comment": "Church for the many Christians who live here. "
+    },
+    {
+        "name": "Bab al-Abwab",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 48.31379,
+        "lat": 42.18704,
+        "comment": "Houses of prayer, sentinels, and mosque in the middle of the market. "
+    },
+    {
+        "name": "Khilat (Ahlat) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 42.47372,
+        "lat": 38.9243,
+        "comment": "Mosque in the markets"
+    },
+    {
+        "name": "Dabil",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.67536,
+        "lat": 40.15102,
+        "comment": "Mosque on a large hill."
+    },
+    {
+        "name": "Dabil",
+        "topType": "regional",
+        "condition": "christian",
+        "lon": 44.67536,
+        "lat": 40.15102,
+        "comment": "Monastery of stone which a picture of Marym."
+    },
+    {
+        "name": "Marand",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 45.80783,
+        "lat": 38.46377,
+        "comment": "Mosque in the markets"
+    },
+    {
+        "name": "Salamas",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.82887,
+        "lat": 38.22274,
+        "comment": "Mosque stands on edge of market"
+    },
+    {
+        "name": "Urmiya",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 45.06856,
+        "lat": 37.51983,
+        "comment": "Mosque stands in clothmakers' market"
+    },
+    {
+        "name": "Qandariya (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.3719,
+        "lat": 39.04513,
+        "comment": "Delightful mosque "
+    },
+    {
+        "name": "Nurin (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 44.82745,
+        "lat": 39.53712,
+        "comment": "Mosque located here "
+    },
+    {
+        "name": "Ardabil",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 48.30975,
+        "lat": 38.23486,
+        "comment": "Mosque at the middle of the cross that is made by the meeting of four roads. Also has a large stone which is not affected even if struck with bars of iron."
+    },
+    {
+        "name": "Tabriz",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 46.33029,
+        "lat": 38.06249,
+        "comment": "Splendid mosque in center of town. "
+    },
+        {
+        "name": "Arrajan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 30.6103,
+        "lon": 50.29766,
+        "comment": "Well attended mosque with a tall, elegant minaret"
+    },
+    {
+        "name": "Juma",
+        "topType": "local",
+        "condition": "interfaith",
+        "lat": 27.8168,
+        "lon": 52.39133,
+        "comment": "Burial ground of Sabur bin Fars"
+    },
+    {
+        "name": "Hinduwan",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.25118,
+        "lon": 49.70675,
+        "comment": "Mosque towards Arrajan"
+    },
+    {
+        "name": "Siniz",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 29.92283,
+        "lon": 50.27838,
+        "comment": "Mosque distant from the market opposite to the administration building "
+    },
+    {
+        "name": "Mahruban",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.06436,
+        "lon": 50.21436,
+        "comment": "Mosque on coast"
+    },
+    {
+        "name": "Jannaba",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 29.60089,
+        "lon": 50.53898,
+        "comment": "Mosque in midtown, birthplace of Abu Said and Abu Tahir al-Qarmati"
+    },
+    {
+        "name": "Siraf",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 27.69666,
+        "lon": 52.34306,
+        "comment": "Elegant, beautiful mosque"
+    },
+    {
+        "name": "Najiram",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 28.49687,
+        "lon": 51.12283,
+        "comment": "Two mosques"
+    },
+    {
+        "name": "Karkam (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 28.04536,
+        "lon": 53.04429,
+        "comment": "Mosque on a small hill at the end of the market"
+    },
+    {
+        "name": "Kariyan",
+        "topType": "regional",
+        "condition": "zoroastrian",
+        "lat": 28.05935,
+        "lon": 53.70323,
+        "comment": "Zoroastrian temple to which the people attach great importance"
+    },
+    {
+        "name": "Ra's Kishm",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 26.96505,
+        "lon": 56.28286,
+        "comment": "Mosque iwithin the market"
+    },
+    {
+        "name": "Darabjird",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 28.75143,
+        "lon": 54.54591,
+        "comment": "Mosque that stands on the dome of naptha "
+    },
+    {
+        "name": "Furj",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 28.31921,
+        "lon": 55.16805,
+        "comment": "Mosque in town"
+    },
+    {
+        "name": "Burk (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 28.94891,
+        "lon": 55.01163,
+        "comment": "Mosque beside market, handsome and clean"
+    },
+    {
+        "name": "Juwaym Abi Ahmad",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 28.14336,
+        "lon": 53.94661,
+        "comment": "Elevate mosque with a cistern filled by rainwater in the middle"
+    },
+    {
+        "name": "Tarum (very est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.40186,
+        "lon": 51.44457,
+        "comment": "Mosque some distance from market"
+    },
+    {
+        "name": "Niriz (very est.) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 29.25727,
+        "lon": 51.60077,
+        "comment": "Mosque beside the market"
+    },
+    {
+        "name": "Shiraz",
+        "topType": "global",
+        "condition": "muslim",
+        "lat": 29.61884,
+        "lon": 52.52867,
+        "comment": "Mosque, 'incomporale in the eight regions,' on pillars after the style of al-Masjid al-Aqsa "
+    },
+    {
+        "name": "Fasa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 28.92193,
+        "lon": 53.63181,
+        "comment": "Mosque in the market built of brick with two courtyards after the style of the mosque in Baghdad"
+    },
+    {
+        "name": "Jur",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 28.84797,
+        "lon": 52.58324,
+        "comment": "Mosque with solid, tall, minaret"
+    },
+    {
+        "name": "Shahrastan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 37.19091,
+        "lon": 55.206,
+        "comment": "House of prayer where some say the Prophet prayed, also prayer house of al-Khidr. "
+    },
+    {
+        "name": "Kazarun",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 29.60743,
+        "lon": 51.68412,
+        "comment": "Mosque located on an eminence to which one must ascend "
+    },
+    {
+        "name": "Al-Nawbandijan",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.12743,
+        "lon": 51.55235,
+        "comment": "Mosque in center of town"
+    },
+    {
+        "name": "Khawrawadhan",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.24443,
+        "lon": 51.50809,
+        "comment": "Well frequented mosque"
+    },
+    {
+        "name": "Junbad Mallaghan",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.29389,
+        "lon": 50.84951,
+        "comment": "Delightful mosque "
+    },
+    {
+        "name": "Kunduran",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 35.14086,
+        "lon": 58.14671,
+        "comment": "Mosque some distance from market"
+    },
+    {
+        "name": "Tawwaz (? ",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 29.44172,
+        "lon": 51.03513,
+        "comment": "Mosque "
+    },
+    {
+        "name": "Istakhr",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 29.97008,
+        "lon": 52.92548,
+        "comment": "Mosque comparable to Makka and the mosques of al-Sham. "
+    },
+    {
+        "name": "Istakhr",
+        "topType": "regional",
+        "condition": "muslim",
+        "lat": 29.97008,
+        "lon": 52.92548,
+        "comment": "The stadium of Sulayman, to which one ascends by handsome stairs cut in the rock"
+    },
+    {
+        "name": "Harat",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.11392,
+        "lon": 54.41315,
+        "comment": "Mosque is here"
+    },
+    {
+        "name": "Jarma",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 33.55385,
+        "lon": 54.93672,
+        "comment": "Mosque close to markets"
+    },
+    {
+        "name": "Dih Ushturan (?)",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 30.31412,
+        "lon": 55.70689,
+        "comment": "Mosque with tall minaret"
+    },
+    {
+        "name": "Sarwistan",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 29.27422,
+        "lon": 57.89378,
+        "comment": "Mosque in middle of town "
+    },
+    {
+        "name": "Abarquh",
+        "topType": "local",
+        "condition": "muslim",
+        "lat": 31.15094,
+        "lon": 53.25737,
+        "comment": "Excellent mosque"
+    }, 
+    {
+        "name": "Al-Qayrawan (Kayrouan)",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 10.06389,
+        "lat": 35.75622,
+        "comment": "Mosque, larger than the congregational mosque of Ib Taylun, with columns and floors of marble, drain pipes of lead, and various gates. "
+    },
+    {
+        "name": "Sabra",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 12.61839,
+        "lat": 32.89283,
+        "comment": "Congregational mosque within markets"
+    },
+    {
+        "name": "Banzard (Bizerta)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 9.69632,
+        "lat": 37.3155,
+        "comment": "Mosque in center of town. "
+    },
+    {
+        "name": "Tahart",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 1.36275,
+        "lat": 35.37465,
+        "comment": "Two mosques built of stone and lime occupying two thirds of the town. "
+    },
+    {
+        "name": "Sijilmasa",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": -4.22769,
+        "lat": 31.28572,
+        "comment": "Mosque situated in center of the city "
+    },
+    {
+        "name": "Dara (est.)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": -7.13171,
+        "lat": 31.03507,
+        "comment": "Number of mosques "
+    },
+    {
+        "name": "Arish",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": -4.50599,
+        "lat": 32.30532,
+        "comment": "Number of mosques "
+    },
+    {
+        "name": "Balarm (Palermo)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 13.359722,
+        "lat": 38.115556,
+        "comment": "Chief mosque located in the interior of the city "
+    },
+    {
+        "name": "Batarliya (Petralia)",
+        "topType": "local",
+        "condition": "christian",
+        "lon": 14.8,
+        "lat": 37.38,
+        "comment": "Church located within a fortress "
+    },
+    {
+        "name": "Qurtuba",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": -4.78135,
+        "lat": 37.91898,
+        "comment": "Chief mosque within city made of stone and mortar, with columns of marble; inner city has five gates. "
+    },
+    {
+        "name": "Buryana (modern day est.) ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 0.0842,
+        "lat": 39.8894,
+        "comment": "Mosque within a fortress"
+    },
+    {
+        "name": "Ikija (est.)",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 3.99224,
+        "lat": 36.62618,
+        "comment": "Spring that flows at times of Prayer; does not flow if a man goes there who has killed someone unlawfully"
+    }, 
+        {
+        "name": "al-Qulzum",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 32.55,
+        "lat":  29.966667,
+        "comment": "Well built mosques; a resort for relief to those on the Pilgrimage."
+    },
+    {
+        "name": "Tinnis",
+        "topType": "local",
+        "condition": "interfaith",
+        "lon": 31.21434,
+        "lat": 32.22632,
+        "comment": "Exquisite mosque; beside it the dead of the unbelievers are piled; Muslim cemetary in the center of town."
+    },
+    {
+        "name": "Dimyat (Damietta)",
+        "topType": "local",
+        "condition": "christian",
+        "lon": 31.43948,
+        "lat": 31.79163,
+        "comment": "Houses of the Copts on the shore."
+    },
+    {
+        "name": "Al-'Abbasiyya (al-'Abbasa)",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 30.53687,
+        "lat": 31.70607,
+        "comment": "Fine mosque built of brick."
+    },
+    {
+        "name": "al-Mahallat al-Kabira",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 30.97564,
+        "lat": 31.14305,
+        "comment": "Two mosques, one on each side of a river."
+    },
+    {
+        "name": "Sandafa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 30.97209,
+        "lat": 31.16099,
+        "comment": "Mosque."
+    },
+    {
+        "name": "Al-Iskandariyya",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 31.21021,
+        "lat": 29.89004,
+        "comment": "Two mosques.",
+    },
+    {
+        "name": "al-Fustat",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 30.04236,
+        "lat": 31.24793,
+        "comment": "The most important of the metropoles of the Muslims; the seat of the Commander of the Faithful; crowded at the time of Pilgrimage festival; nowhere in the realm of Islam is there a mosque more crowded than here; seven mosques (including al-Suflani (bigger than the mosque at Damascus), al-Fawqani (larger and more magnificent than the Suflani mosque), and the Mosque of 'Abd Allah)"
+    },
+    {
+        "name": "Al-'Aziziyya",
+        "topType": "local",
+        "condition": "interfaith",
+        "lon": 31.16595,
+        "lat": 30.10166,
+        "comment": "Mosque of Jacob and Joseph.",
+    },
+    {
+        "name": "al-Jiza",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 30.00712,
+        "lat": 31.20101,
+        "comment": "Mosque larger and more flourishing than the one in the nearby town of al-Jazira."
+    },
+    {
+        "name": "al-Qahira",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 31.23794,
+        "lat": 30.02098,
+        "comment": "Splendid mosque; the musalla (place of prayer) is beyond the town; the burial grounds are between the metropolis and the mountain."
+    },
+    {
+        "name": "Ayn Shams",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 30.13132,
+        "lat": 31.30864,
+        "comment": "Mosque in the marketplace."
+    },
+    {
+        "name": "Al-Mahalla",
+        "topType": "local",
+        "condition": "muslim", 
+        "lon": 30.845013,
+        "lat": 28.557771,
+        "comment": "Elegant mosque. [Coordinates based off of Sandafa's location]",
+    },
+    {
+        "name": "al-Jazira",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 30.02474,
+        "lat": 31.22447,
+        "comment": "Mosque at end of the town near the bridge.  [Coordinates based off of coordinates of al-Fustat and al-Jiza]"
+    },
+      {
+        "name": "al-Sus",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 48.26043,
+        "lat": 32.20443,
+        "comment": "Superb knowledge of God, the Quran, the Tradition; literature, the way of the Prophet, and the decisions of the first khalifs.  Mosque is perfect in every way.  Hanbalites.  Most of the people are Hubbiyya [a Sufi sect]."
+    },
+    {
+        "name": "Basinna",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.30343,
+        "lat": 31.99675,
+        "comment": "Handsome mosque"
+    },
+    {
+        "name": "Jundaysabur [Gundaysabur]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.54101,
+        "lat": 32.29988,
+        "comment": "Sunni Muslims."
+    },
+    {
+        "name": "Tustar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.85306,
+        "lat": 32.05234,
+        "comment": "Insignificant mosque"
+    },
+    {
+        "name": "Askar Mukram",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.89816,
+        "lat": 31.66739,
+        "comment": "Scholars rebuked by the preachers and public, their detachment has offended Islam."
+    },
+    {
+        "name": "al-Ahwaz",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.69258,
+        "lat": 31.32964,
+        "comment": "Their reciter lacks polish, their mosque respect.  However, there is a handsome prayer house."
+    },
+    {
+        "name": "Suq al-Arba'a",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.52266,
+        "lat": 30.9405,
+        "comment": "Mosque."
+    },
+    {
+        "name": "Hisn Mahdi",
+        "topType": "local", 
+        "lon": 48.72405,  
+        "lat": 30.876255, 
+        "condition": "muslim",
+        "comment": "Worshippers at the mosque assemble on the bank of the river."
+    },
+    {
+        "name": "al-Dawraq [ad-Dawraq]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.92544,
+        "lat": 30.81201,
+        "comment": "Mosque on edge of market."
+    },
+    {
+        "name": "Mirathiyan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.26345, 
+        "lat": 31.049325, 
+        "comment": "In each of its two sections is a mosque."
+    },
+    {
+        "name": "Ramhurmuz",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.60146,
+        "lat": 31.28664,
+        "comment": "Fine mosque."
+    },
+    {
+        "name": "Bardasir",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 57.09814,
+        "lat": 30.31818,
+        "comment": "Handsome mosque close to the fort."
+    },
+    {
+        "name": "Mahan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.31144,
+        "lat": 30.10962,
+        "comment": "Mosque in the middle of the town."
+    },
+    {
+        "name": "Kughun",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.06496,
+        "lat": 29.61665,
+        "comment": "Mosque in the center of the town."
+    },
+    {
+        "name": "Zarand",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.59569,
+        "lat": 30.8301,
+        "comment": "Mosque is in the public square near the market."
+    },
+    {
+        "name": "Janzarudh",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.92276,
+        "lat": 30.67368,
+        "comment": "Mosque is in the markets."
+    },
+    {
+        "name": "Unas",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 55.97949,
+        "lat": 30.24708,
+        "comment": "Mosque is in the middle of the market."
+    },
+    {
+        "name": "Kuh Binan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.30181,
+        "lat": 31.37995,
+        "comment": "Mosque is at its gate."
+    },
+    {
+        "name": "Khabis",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.75226,
+        "lat": 30.46038,
+        "comment": "Mosque is in midtown."
+    },
+    {
+        "name": "Narmasir",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 58.64813,
+        "lat": 28.99097,
+        "comment": "Through it goes the Pilgrimage route from Sijistan; handsome, well-attended mosque in the middle of the markets, ascended to by ten steps; built of burnt brick; minaret without compare in the region."
+    },
+    {
+        "name": "Rikan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.73345,
+        "lat": 28.65443,
+        "comment": "Mosque is at the town gate."
+    },
+    {
+        "name": "Nasa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.02718,
+        "lat": 29.69723,
+        "comment": "Mosque is in the markets."
+    },
+    {
+        "name": "al-Sirjan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 55.74249,
+        "lat": 29.46497,
+        "comment": "Beautiful mosque with a minaret between the two markets, old and new."
+    },
+    {
+        "name": "Bimand",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 55.60029,
+        "lat": 29.66405,
+        "comment": "Mosque stands in the market."
+    },
+    {
+        "name": "al-Shamat",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.01267,
+        "lat": 29.75885,
+        "comment": "Mosque is in the middle of the town."
+    },
+    {
+        "name": "Khur",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 55.083333,
+        "lat": 33.775,
+        "comment": "Mosque on its bank.  [Coordinates based off of modern day Khur, Iran (Wikipedia)]"
+    },
+    {
+        "name": "Bamm",
+        "topType": "global",
+        "condition": "muslim",
+        "lon": 58.34003,
+        "lat": 29.09999,
+        "comment": "In Islam it is renowned and is the glory of the region; the mosque is in the city with some of the markets."
+    },
+    {
+        "name": "Darzhin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.16939,
+        "lat": 29.19953,
+        "comment": "Splendid mosque."
+    },
+    {
+        "name": "Rayin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.4963,
+        "lat": 29.60717,
+        "comment": "Mosque is amidst the markets."
+    },
+    {
+        "name": "Jiruft",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.80914,
+        "lat": 28.69235,
+        "comment": "Mosque stands at the edge of town close to the Bamm gate."
+    },
+    {
+        "name": "Hurmuz",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.94172,
+        "lat": 27.10443,
+        "comment": "Mosque is in the markets."
+    },
+    {
+        "name": "Bas",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.80914,
+        "lat": 27.00963,
+        "comment": "Mosque is in the market."
+    },
+    {
+        "name": "Jakin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.46312,
+        "lat": 27.22768,
+        "comment": "Mosque is in the market."
+    },
+    {
+        "name": "Manuqan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.54844,
+        "lat": 27.4552,
+        "comment": "Mosque located midway between its two sections."
+    },
+    {
+        "name": "Juy Sulayman [Jay Sulayman]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.18361,
+        "lat": 28.12354,
+        "comment": "Mosque is in midtown."
+    },
+    {
+        "name": "Kuh Barjan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.75226,
+        "lat": 27.67798,
+        "comment": "Mosque is in the town."
+    },
+    {
+        "name": "Quhistan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 59.2164,
+        "lat": 32.8653,
+        "comment": "Mosque is in midtown.  [Coordinates based on modern day South Khorasan Province (Wikipedia)]"
+    },
+      {
+        "name": "Al-Yahudiyya ",
+        "topType": "regional",
+        "condition": "interfaith",
+        "lon": 51.50239,
+        "lat": 32.71922,
+        "comment": "Mosque is always filled with congregations; handsome mosque in the markets; when Bukht Nasar (nebuchadnezzar) moved the children of Israel out from the Holy Land, they looked around the places of the earth, and saw no place that resembled their own land, so they settled there\" (est: capital of Isfahan) "
+    },
+    {
+        "name": "Al-Madina",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 51.4515,
+        "lat": 32.62919,
+        "comment": "Old and strong mosque (est: two miles from al-Yahudiyya) "
+    },
+    {
+        "name": "Sumayram",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 50.77821,
+        "lat": 32.22208,
+        "comment": "exquisite modern mosque some distance from the markets (est: mountain on the way toward al-Yahudiyya)"
+    },
+    {
+        "name": "Al-Ziz",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 52.28921,
+        "lat": 32.29254,
+        "comment": "delightful mosque built here in 367/977 (est: on River Tab) "
+    },
+    {
+        "name": "Ardistan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 52.36585,
+        "lat": 33.36138,
+        "comment": "Mosque"
+    },
+    {
+        "name": "Al-Rayy [Ar-Rayy]",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 51.44071,
+        "lat": 35.63016,
+        "comment": "One of the glories of Islam; expert preachers"
+    },
+    {
+        "name": "Hamadhan [Hamadan]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.5772,
+        "lat": 34.77688,
+        "comment": "beautiful mosque, well-built and in the market"
+    },
+    {
+        "name": "Asadawadh [Asadabad]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.15134,
+        "lat": 34.80415,
+        "comment": "Mosque is in an alley, delightful and well attended"
+    },
+    {
+        "name": "Qarmasin [(Kirman Shah(an)]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 47.09404,
+        "lat": 34.32585,
+        "comment": "Mosque is in the markets, a fine one."
+    },
+    {
+        "name": "Nihawand (Mah al-Basra)",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 48.39049,
+        "lat": 34.22305,
+        "comment": "Two mosques.  Mosque in middle of the town has no equal in building or beauty in the region."
+    },
+    {
+        "name": "Al-Dinawar (Mah al-Kufa) [Dinawar]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 47.48843,
+        "lat": 34.60066,
+        "comment": "Mosque is some distance from the markets; over the pulpit is a beautiful dome; finest maqsura raised ablove the floor of the mosque."
+    },
+    {
+        "name": "Karaj Abi Dulaf [Karag Abu Dulaf]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 49.54324,
+        "lat": 33.88688,
+        "comment": "one mosque"
+    },
+    {
+        "name": "al-Jarmaq",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 51.246986,
+        "lat": 33.572469,
+        "comment": "Black mounds which people assert are the ashes of the fire of Abraham.  [Coordinates based off of al-Muqaddasi's map overlaid on Google Earth]",
+        "undefined": "pg. 397"
+    },
+     {
+        "name": "Bannajbur",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 64.12441,
+        "lat": 26.93214,
+        "comment": "Mosque is in the midst of the markets."
+    },
+    {
+        "name": "Al-Tiz",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 60.62581,
+        "lat": 25.3924,
+        "comment": "Handsome mosque."
+    },
+    {
+        "name": "Al-Mansura",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 69.07393,
+        "lat": 25.90033,
+        "comment": "Mosque of stone and baked brick.  The mosque is similar to that of 'Uman, built on pillars of teak."
+    },
+    {
+        "name": "Qannawj (Kannawj)",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 79.92,
+        "lat": 27.07,
+        "comment": "Mosque is in the suburbs."
+    },
+    {
+        "name": "Tayma",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 36.763333,
+        "lat": 32.836944,
+        "comment": "The mosque is in the city.  [Coordinates from www.geonames.org]"
+    },
+      {
+        "name": "Akhsikath",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 71.35303,
+        "lat": 40.91214,
+        "comment": "Mosque in the inner city."
+    },
+    {
+        "name": "Zarakan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.526944,
+        "lat": 27.830833,
+        "comment": "At portal of mosque is pleasant garden with trees.  [Coordinates from www.geonames.org]"
+    },
+    {
+        "name": "Ushtiqan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 72.04929,
+        "lat": 40.67005,
+        "comment": "Mosque in the markets."
+    },
+    {
+        "name": "Uzkand",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 73.39541,
+        "lat": 40.81072,
+        "comment": "Mosque."
+    },
+    {
+        "name": "Quba",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 72.17823,
+        "lat": 40.55651,
+        "comment": "Mosque in the markets."
+    },
+    {
+        "name": "Marghinan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 71.76047,
+        "lat": 40.4977,
+        "comment": "Mosque is remote from the markets with a stream at its portal."
+    },
+    {
+        "name": "Rishtan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 71.55933,
+        "lat": 40.01752,
+        "comment": "The mosque has a portal that opens to the markets nad another that opens to the public square."
+    },
+    {
+        "name": "Wankat",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 70.89401,
+        "lat": 40.92383,
+        "comment": "Similar mosque situation to Rishtan."
+    },
+    {
+        "name": "Isbijab",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 69.75419,
+        "lat": 42.23548,
+        "comment": "Mosque with four gates and a guardhouse at each gate.  The gates are the Gate of Nujakath, the Gate of Farrukhan, the Gate of Shakrana, and the Gate of Bukhara."
+    },
+    {
+        "name": "Barab",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 54.397222,
+        "lat": 28.725278,
+        "comment": "Mosque stands in the fortress.  [Coordinates from www.geonames.org]"
+    },
+    {
+        "name": "Kadar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.31524,
+        "lat": 42.6693,
+        "comment": "Mosque built during time of wars."
+    },
+    {
+        "name": "Shawaghar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.31008,
+        "lat": 43.25806,
+        "comment": "Mosque at the edge of the market."
+    },
+    {
+        "name": "Sawran",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 67.26311,
+        "lat": 43.82631,
+        "comment": "Mosque in the inner city."
+    },
+    {
+        "name": "Taraz",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 71.366667,
+        "lat": 42.9,
+        "comment": "Mosque in the market.  [Coordinates from www.geonames.org]"
+    },
+    {
+        "name": "Barskhan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 77.6039,
+        "lat": 42.1561,
+        "comment": "Mosque in the markets.  [Coordinates estimate from modern-day Barskon, Kyrgyzstan (Google search result)]"
+    },
+    {
+        "name": "Bahlu (Baluwa)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 51.584444,
+        "lat": 30.153056,
+        "comment": "Mosque in the markets.  [Coordinates estimate from modern-day Bahlu, Iran (Wikipedia)]"
+    },
+    {
+        "name": "Kulan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 72.7080556,
+        "lat": 42.9152778,
+        "comment": "Mosque.  [Coordinates based off of Kulan (http://www.ciolek.com/owtrad/gazetteer-03.html#K)]"
+    },
+    {
+        "name": "Binkath",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 69.41766,
+        "lat": 41.23291,
+        "comment": "Mosque."
+    },
+    {
+        "name": "Binakath",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.80907,
+        "lat": 40.71111,
+        "comment": "Mosque in the market."
+    },
+    {
+        "name": "Tunkath",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 70.23255,
+        "lat": 41.00367,
+        "comment": "Mosque outside the capital."
+    },
+    {
+        "name": "Bunjikath",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.8297,
+        "lat": 39.72659,
+        "comment": "Mosque."
+    },
+    {
+        "name": "Zamin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.42226,
+        "lat": 39.9365,
+        "comment": "Mosque on the road that leads to Samarqand."
+    },
+    {
+        "name": "Samarqand",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 66.25,
+        "lat": 39.8333,
+        "comment": "Mosque in the inner city.  [Coordinates based on contemporary Samarqand Province, Uzbekistan (Google search)]"
+    },
+    {
+        "name": "Zandana",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 64.428611,
+        "lat": 39.774722,
+        "comment": "Mosque in the fortress.  [Coordinates based off of modern day Bukhara]"
+    },
+    {
+        "name": "Baykand",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 64.071,
+        "lat": 39.662,
+        "comment": "Mosque; mihrab decorated with jewels.  [Coordinates based off of coordinates of Battle of Baykand (www.geonames.org)]"
+    },
+    {
+        "name": "Kish",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 66.826,
+        "lat": 39.0129,
+        "comment": "Mosque in the ruined inner city."
+    },
+    {
+        "name": "Nasaf [Nakhshab]",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 65.7945,
+        "lat": 38.84841,
+        "comment": "Mosque in the suburbs."
+    },
+    {
+        "name": "Al-Saghaniyan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 67.88588,
+        "lat": 38.2555,
+        "comment": "The mosque is in the center of the market and is a brick building without arches."
+    },
+    {
+        "name": "Darzanji",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 67.44233,
+        "lat": 37.6087,
+        "comment": "Mosque in the midst of the markets."
+    },
+    {
+        "name": "Kath",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 53.70323,
+        "lat": 29.36324,
+        "comment": "Mosque in the midst of the markets, with columns of black stone the height of a man, above which are wooden pillars.  [Coordinates based off of Cornu Map 6]"
+    },
+    {
+        "name": "Sadur",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 54.25,
+        "lat": 29.8,
+        "comment": "Mosque in the center of the town.  [Coordinates based off of moder nday Sadur, Iran (www.geonames.org)]"
+    },
+    {
+        "name": "Nuzwar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 59.166668,
+        "lat": 42.316666,
+        "comment": "Mosque stands in the midst of the markets and is entirely roofed except for a small portion of it.  [Coordinates based off of those of Gurgandj, Turkmenistan (http://www.ciolek.com/owtrad/gazetteer-02.html)]"
+    },
+    {
+        "name": "Zamakhshar",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 59.4,
+        "lat": 41.4,
+        "comment": "Mosque is very fine; located beside the market. [Coordinates based off of those of Gurgandj, Turkmenistan (http://www.ciolek.com/owtrad/gazetteer-02.html) and modern day coordinates of Zamakhshar, Turkmenistan (http://www.karakalpak.com/anczamak.html)] "
+    },
+    {
+        "name": "Khiwa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 60.363889,
+        "lat": 41.378333,
+        "comment": "Fine mosque.  [Coordinates based off of Khiva, Uzbekistan (www.geonames.org)]"
+    },
+    {
+        "name": "Jaz",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 51.6211,
+        "lat": 32.8036,
+        "comment": "Mosque stands next to the high road.  [Coordinates from http://www.ciolek.com/owtrad/gazetteer-02.html#J] "
+    },
+    {
+        "name": "Darghan",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 60.366669,
+        "lat": 41.400002,
+        "comment": "A beautiful mosque without compare in the area, magnificently decorated with precious stones.  [Coordinates based off of Khwarizm (http://www.ciolek.com/owtrad/gazetteer-03.html#K)]"
+    },
+    {
+        "name": "Hulbuk",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 69.5578,
+        "lat": 37.7778,
+        "comment": "Mosque in the center of the town.  [Coordinates based off of Hulbuk (http://www.ciolek.com/owtrad/gazetteer-02.html#H)]"
+    },
+    {
+        "name": "Tirmidh",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 67.26667,
+        "lat": 37.233334,
+        "comment": "Mosque is in the fortress.  [Coordinates based off of Tirmidh (http://www.ciolek.com/owtrad/gazetteer-05.html#T)]"
+    },
+    {
+        "name": "Kalif",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 67.252037,
+        "lat": 37.243225,
+        "comment": "Mosque in the guardhouse named after Dhu al-Qurnayn.  [Coordinates based off of Tirmidh (https://www.google.com/maps/place/37%C2%B014'00.0%22N+67%C2%B016'00.0%22E/@37.2111044,67.2345278,12z/data=!4m2!3m1!1s0x0:0x0)]"
+    },
+    {
+        "name": "Zamm",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 65.166667,
+        "lat": 37.583333,
+        "comment": "Mosque in the midst of the markets.  [Coordinates based off of modern day Kerki, Turmenistan Republic (E2)]"
+    },
+    {
+        "name": "Amul",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 52.35814,
+        "lat": 36.45524,
+        "comment": "Mosque is on a small hill.  [Coordinates from Cornu Map 6]"
+    },
+    {
+        "name": "Balkh",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 66.9,
+        "lat": 36.75,
+        "comment": "Friday mosqu; in the regions of the non-Arabs there is no mosque to equal theirs; mosque stands in the midst of the markets, descended to by steps, well-frequented, highly decorated with filigree of wood; mosque is in the inner city.  [Coordinates based off of Balkh (http://www.ciolek.com/owtrad/gazetteer-01.html#B)]"
+    },
+    {
+        "name": "Baghlan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.708056,
+        "lat": 36.130556,
+        "comment": "Mosque in the Lower section.  [Coordinates based on coordinates of modern day Baghlan, Afghanistan (www.geonames.org)]"
+    },
+    {
+        "name": "Farwan (Barwan)",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 69.25,
+        "lat": 35.116667,
+        "comment": "Well-attended mosque.  [Coordinates based off of ancient Farwan (E2)]"
+    },
+    {
+        "name": "Ghaznin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 68.3,
+        "lat": 33.733333,
+        "comment": "The mosque is towards the southern part of this capital.  [Coordinates based off of Ghazna, Afghanistan (E2)]"
+    },
+    {
+        "name": "Zaranj",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 61.860278,
+        "lat": 30.959444,
+        "comment": "Mosque in the inner city; mosque is marvelously constructed with two minarets.  The old minaret and a brass one were built by Ya'qub ibn al-Layth.  [Coordinates based off of modern day coordinates of Zaranj, Afghanistan (www.geonames.org)]"
+    },
+    {
+        "name": "Nih ",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 46.126389,
+        "lat": 35.488056,
+        "comment": "Mosque.  [Coordinates based off of modern day coordinates of Ney, Iran (www.geonames.org)]"
+    },
+    {
+        "name": "Harat",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 62.15,
+        "lat": 34.366667,
+        "comment": "Mosque is in themiddle of the inner city amongst the markets; it is well-attended.  [Coordinates based off of Harat, Afghanistan (E2)]"
+    },
+    {
+        "name": "Abshin",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 48.58,
+        "lat": 30.121111,
+        "comment": "Fine mosque.  [Coordinates based off of modern day Abshin, Iran (www.geonames.org)]"
+    },
+    {
+        "name": "Kharaq",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 50.33529,
+        "lat": 29.23531,
+        "comment": "Mosque outside the market.  [Coordinates based off of Cornu Map 6]"
+    },
+    {
+        "name": "Dandanaqan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 61.3454,
+        "lat": 37.3919,
+        "comment": "Beautiful Friday mosque and one place of prayer.  [Coordinates based off of location of Battle of Dandanaqan (www.geonames.org)]"
+    },
+    {
+        "name": "Sarakhs",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 61.159443,
+        "lat": 36.549442,
+        "comment": "Mosque in the inner city.  [Coordinates based off of Sarakhs (http://www.ciolek.com/owtrad/gazetteer-05.html#S)]"
+    },
+    {
+        "name": "Dizah",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 51.68337,
+        "lat": 35.27841,
+        "comment": "Mosque in the market.  [Coordinates from Cornu Map 6]"
+    },
+    {
+        "name": "Iranshahr",
+        "topType": "regional",
+        "condition": "muslim",
+        "lon": 48.128056,
+        "lat": 34.067222,
+        "comment": "Mosque is in the suburbs below the city at the edge of the market; six chambers; the masjid al-minbar [the raised portion of the mosque] was built partly by Abu Muslim with the remainder built by 'Amr bin al-Layth; eleven gates; roof has three arches; decorated walls' roof ends in a point.  [Coordinates based off of modern day Iranshahr, Iran (www.geonames.org)]"
+    },
+    {
+        "name": "Turthith",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.45104,
+        "lat": 35.15435,
+        "comment": "Mosque beside a newly built market.  [Coordinates based off of Cornu Map 6]"
+    },
+    {
+        "name": "Jajarm",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 56.38,
+        "lat": 36.95,
+        "comment": "Fine mosque.  [Coordinates based off of modern day Jajarm, Iran (www.geonames.org)]"
+    },
+    {
+        "name": "Tabaran",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 59.566944,
+        "lat": 36.454167,
+        "comment": "Mosque is in the markets.  [Coordinates based off of modern day Tus, Iran (www.geonames.org)] "
+    },
+    {
+        "name": "Nasa",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.383333,
+        "lat": 37.95,
+        "comment": "Elegant mosque.  [Coordinates based off of modern day Ashqabat, Turkmenistan (E2, www.geonames.org)]"
+    },
+    {
+        "name": "Kufan",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 62.108056,
+        "lat": 34.216389,
+        "comment": "In one corner of its hospice stands the great mosque.  [Coordinates based off of modern day Kufan, Afghanistan]"
+    },
+    {
+        "name": "Tabas al-Tamr",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 57.9,
+        "lat": 31.2,
+        "comment": "Delightful mosque; grave of two of the Companions of the Prophet.  [Coordiantes based off of Tabsasin (http://www.ciolek.com/owtrad/gazetteer-05.html#T)]"
+    },
+    {
+        "name": "Tun",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 58.15,
+        "lat": 34,
+        "comment": "Mosque stands in middle of the town.  [Coordinates based off of modern day Firdaws (E2)]"
+    },
+    {
+        "name": "Tus",
+        "topType": "local",
+        "condition": "muslim",
+        "lon": 59.566944,
+        "lat": 36.454167,
+        "comment": "The grave of 'Ali al-Ridha.  [Coordinates based off of modern day Tus, Iran (www.geonames.org)]"
+    }, 
+]}  
+
+
+

@@ -1,6 +1,0 @@
-[submodule "third_party/d3"]
-	path = third_party/d3
-	url = https://github.com/mbostock/d3
-[submodule "third_party/jslib"]
-	path = third_party/jslib
-	url = https://github.com/caesarfeta/jslib

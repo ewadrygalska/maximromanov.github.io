@@ -1,0 +1,308 @@
+00000104	fruits
+00000099	stone
+00000098	dates
+00000082	grapes
+00000071	cloth
+00000063	clay
+00000051	fish
+00000048	brick
+00000046	agricultural foods
+00000044	marble
+00000043	palm wood
+00000041	wood
+00000036	grains
+00000036	figs
+00000031	iron
+00000030	bread
+00000029	olives
+00000029	cheese
+00000027	raisins
+00000026	olive oil
+00000026	leather
+00000025	waterskins
+00000024	saffron
+00000024	cattle
+00000023	vinegar
+00000022	shoes
+00000022	cotton
+00000021	canvas
+00000021	almonds
+00000020	lotus fruit
+00000020	dyes
+00000019	silk brocade
+00000019	silk
+00000019	mats
+00000019	linen
+00000018	reed pens
+00000018	bananas
+00000017	skins
+00000017	plums
+00000016	wax
+00000016	vitriol
+00000016	sycamore fig
+00000016	sugar candy
+00000016	spun yarn
+00000016	plantains
+00000016	nayda (pastry)
+00000016	marzipan
+00000016	lupine fruit
+00000016	lupine
+00000016	leggings
+00000016	indigo
+00000016	harisa (meat dish)
+00000016	goat wool
+00000016	girdles
+00000016	geese
+00000016	confection
+00000016	clover
+00000016	chick peas
+00000016	camelshair
+00000016	balsam oil
+00000016	asses
+00000016	arum
+00000016	apparel
+00000016	Colocasia (radish)
+00000014	teak wood
+00000013	wool
+00000013	vegetables
+00000013	meats
+00000013	honey
+00000012	scarves
+00000012	rice
+00000012	melons
+00000012	lead
+00000012	gypsum
+00000011	textiles
+00000011	sheep
+00000011	perfume
+00000011	pearls
+00000011	paper
+00000011	agricultural products
+00000010	walnuts
+00000010	sugarcane
+00000010	meat
+00000010	leather mats
+00000009	satchels
+00000009	pistachios
+00000009	milk
+00000009	garments
+00000009	fruit
+00000009	essence of violet
+00000008	soap
+00000008	sapphire
+00000008	sandarax resin
+00000008	sandalwood
+00000008	ropes
+00000008	pharmceuticals
+00000008	pepper
+00000008	pelts
+00000008	onyx
+00000008	mules
+00000008	linens
+00000008	ivory
+00000008	glass
+00000008	evony
+00000008	confections
+00000008	cocnuts
+00000008	carnelians
+00000008	camphor
+00000008	brazilwood
+00000008	bamboo
+00000008	aloe
+00000007	sugar
+00000007	nuts
+00000007	needles
+00000007	mortar
+00000007	lime
+00000007	knives
+00000007	henna
+00000007	cedar wood
+00000007	camels
+00000007	apples
+00000006	sumac
+00000006	reeds
+00000006	pomegranates
+00000006	pomegranate seeds
+00000006	plaster
+00000006	orange
+00000006	oil
+00000006	grain
+00000006	dairy
+00000006	cypress wood
+00000006	curtains
+00000006	coal
+00000006	clothes
+00000006	balances
+00000006	arrows
+00000005	wheat
+00000005	sorghum
+00000005	silver
+00000005	silks
+00000005	sesame
+00000005	quinces (fruit)
+00000005	livestock
+00000005	hemp
+00000005	flowers
+00000005	embroidery
+00000005	cows
+00000005	black stone
+00000004	white cloth
+00000004	veils
+00000004	turquoise
+00000004	truffles
+00000004	towels
+00000004	syrups
+00000004	sweetmeat
+00000004	spears
+00000004	soaps
+00000004	salts
+00000004	reed mats
+00000004	red ochre
+00000004	poplin (fabric)
+00000004	naptha
+00000004	mud
+00000004	millet
+00000004	locust
+00000004	lemons
+00000004	gold
+00000004	gains
+00000004	firewood
+00000004	dye
+00000004	currants
+00000004	cotton cloth
+00000004	coth
+00000004	chairs
+00000004	cement
+00000004	carpets
+00000004	carnelian (precious stone)
+00000004	cake
+00000004	breads
+00000004	brass containers
+00000004	banana
+00000004	ammonia
+00000004	acorns
+00000004	Turquoise
+00000003	yogurt
+00000003	yellow dye
+00000003	wraps
+00000003	whetstones
+00000003	watermelon
+00000003	verdigris
+00000003	turbans
+00000003	tin
+00000003	tiger skins
+00000003	sugar syrup
+00000003	stirrups
+00000003	silver cloth
+00000003	shields
+00000003	sable skins
+00000003	rosewater
+00000003	rosaries
+00000003	rapeseed oil
+00000003	qubbayt (fruit preserve)
+00000003	quail
+00000003	pomegranate
+00000003	pitch
+00000003	pine nuts
+00000003	pears
+00000003	narcissus
+00000003	mirrors
+00000003	mint
+00000003	metal buckets
+00000003	medicine
+00000003	maps
+00000003	luxuries
+00000003	linen cloth
+00000003	leather sacks
+00000003	lamps
+00000003	jasmine
+00000003	jars
+00000003	inkstands
+00000003	honeydew
+00000003	hazelnuts
+00000003	grass peas
+00000003	girths
+00000003	gems
+00000003	galbanum
+00000003	fox skins
+00000003	fats
+00000003	essences
+00000003	dairy products
+00000003	cumin
+00000003	corn
+00000003	copper pans
+00000003	copper
+00000003	confectionary
+00000003	cloths
+00000003	citrus
+00000003	citron
+00000003	cinnabar
+00000003	chestnuts
+00000003	cheeses
+00000003	chains
+00000003	casks
+00000003	carob
+00000003	cannabis seed
+00000003	bottles
+00000003	boots
+00000003	bits
+00000003	beating rods for fulling
+00000003	baskets
+00000003	antimony
+00000003	ambergris
+00000002	wool cloth
+00000002	white stone
+00000002	teakwood
+00000002	taylasans
+00000002	tarragon
+00000002	silk veils
+00000002	silk turbans
+00000002	shrimp
+00000002	porridge
+00000002	oranges
+00000002	mulberry
+00000002	long-necked bottles
+00000002	lentils
+00000002	hunted birds
+00000002	horses
+00000002	glass vessels
+00000002	glass beads
+00000002	garlic
+00000002	frankincense
+00000002	foods
+00000002	flour
+00000002	flax
+00000002	durable cloth
+00000002	dried peaches
+00000002	draperies
+00000002	cushions
+00000002	coral
+00000002	coconuts
+00000002	basil
+00000002	barley beer
+00000002	adobe
+00000001	watermelons
+00000001	violet
+00000001	sweetmeats
+00000001	shawls
+00000001	sesame oil
+00000001	rush mats
+00000001	roses
+00000001	pickles
+00000001	partridge
+00000001	myrobalan
+00000001	lotus
+00000001	leather water bottles
+00000001	hunting
+00000001	honey-colored wool cloth
+00000001	fine cloth
+00000001	eggplants
+00000001	drinking cups
+00000001	daql date
+00000001	coverlets
+00000001	colored cloth
+00000001	clothing
+00000001	chickens
+00000001	brocades
+00000001	biscuits
+00000001	billy goats
